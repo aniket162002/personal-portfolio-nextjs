@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Aniket Shinde Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .offline-container {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px;
+            background: rgba(31, 41, 55, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(75, 85, 99, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .offline-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #3b82f6, #d946ef);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #3b82f6, #d946ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            color: rgba(209, 213, 219, 0.9);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .retry-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .features {
+            margin-top: 40px;
+            text-align: left;
+        }
+        
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 8px;
+        }
+        
+        .feature-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            color: #3b82f6;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            color: #fca5a5;
+        }
+        
+        @media (max-width: 640px) {
+            .offline-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            📱
+        </div>
+        
+        <h1>You're Offline</h1>
+        
+        <p>
+            Don't worry! You can still browse the cached content of Aniket Shinde's portfolio. 
+            Some features may be limited while offline.
+        </p>
+        
+        <button class="retry-btn" onclick="window.location.reload()">
+            Try Again
+        </button>
+        
+        <button class="retry-btn" onclick="window.location.href='/'">
+            Go Home
+        </button>
+        
+        <div class="features">
+            <h3 style="margin-bottom: 20px; color: #3b82f6;">Available Offline:</h3>
+            
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                <span>View portfolio sections</span>
+            </div>
+            
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                <span>Browse projects and experience</span>
+            </div>
+            
+            <div class="feature">
+                <span class="feature-icon">✅</span>
+                <span>Access contact information</span>
+            </div>
+            
+            <div class="feature">
+                <span class="feature-icon">❌</span>
+                <span>Submit contact forms</span>
+            </div>
+            
+            <div class="feature">
+                <span class="feature-icon">❌</span>
+                <span>Download resume</span>
+            </div>
+        </div>
+        
+        <div class="status">
+            <strong>Connection Status:</strong> Offline<br>
+            <small>Forms will be submitted automatically when connection is restored.</small>
+        </div>
+    </div>
+    
+    <script>
+        // Check for connection and reload when online
+        window.addEventListener('online', () => {
+            window.location.reload()
+        })
+        
+        // Update status based on connection
+        function updateConnectionStatus() {
+            const status = document.querySelector('.status')
+            if (navigator.onLine) {
+                status.innerHTML = '<strong>Connection Status:</strong> Online<br><small>All features are available.</small>'
+                status.style.background = 'rgba(34, 197, 94, 0.1)'
+                status.style.borderColor = 'rgba(34, 197, 94, 0.3)'
+                status.style.color = '#86efac'
+            }
+        }
+        
+        // Check connection status periodically
+        setInterval(updateConnectionStatus, 1000)
+        
+        // Initial check
+        updateConnectionStatus()
+    </script>
+</body>
+</html>
